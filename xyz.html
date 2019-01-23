@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+   <script type="text/javascript">
+
+//    let apptron;
+// apptron = ["1","2","3","4"]
+//   console.log(apptron[0]);
+//    console.log(apptron[1]);
+//
+//    let names = new Array("app","react","ionic","js")
+//
+//    for(var i = 0;i<names.length;i++) {
+//       console.log(names[i])
+//    }
+
+function isBigEnough(element, index, array) {
+   return (element >= 10);
+}
+var passed = [12, 5, 8, 130, 44].filter(isBigEnough);
+console.log("Test Value : " + passed );
+
+var index = [12, 5, 8, 130, 44].indexOf(44);
+console.log("index is : " + index )
+
+var numbers = new Array(1, 4, 9);
+var length = numbers.push(10);
+console.log("new numbers is : " + numbers );
+
+var arr = [10, 1, 2, 3].shift();
+console.log("Shifted value is : " + arr )
+
+var arr = ["orange", "mango", "banana", "sugar", "tea"];
+console.log("arr.slice( 1, 2) : " + arr.slice( 1, 2) );
+console.log("arr.slice( 1, 3) : " + arr.slice( 1, 3) );
+
+
+   </script>
+</body>
+</html>
