@@ -1,0 +1,6 @@
+echo "# React-Native-306" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/shahnawazkhan3/React-Native-306.git
+git push -u origin master
