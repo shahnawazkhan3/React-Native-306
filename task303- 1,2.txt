@@ -1,0 +1,40 @@
+1) School Management System
+                                          Module-1
+1)  Name
+2)  Father Name
+3)  Class
+4)  Last Class
+5)  Last passing marks
+6)  Roll No #
+                                          
+                                          Module-2
+7)  Admission Fees
+8)  Mothly Fees
+9)  Extracirculum Fees
+10) Game fees
+
+                                          Module-3
+Marks obtain part
+11) English         Status: Pass/Fail
+12) Physics         Status: Pass/Fail
+
+apptron technologies
+
+2)======================Library Management System=========================
+
+
+                                          Module-1
+1) User id
+2) User name
+3) Father name
+4) Class of students
+5) University id
+
+                                          Module-2
+6) Books array 
+Department             Create total 25 array
+i) physics   ii) Chemistry   iii) Botany   iv) Zoology
+ like: Phyiscs Array shows total books (10)
+
+
+Next step is when student send request  must be request match
