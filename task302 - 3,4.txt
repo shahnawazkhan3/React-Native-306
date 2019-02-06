@@ -1,0 +1,47 @@
+3)Hospital Management System
+                                           Module-1
+1) Patient name
+
+2) Father name/Husband name
+3) Mr no: generated
+4) Date
+5) Time generated
+6) Nic no:
+7) Patient ward 
+8) Patient ills array             [Fever,Flue,Bp]
+9) Dr. name and fields array      [1,2,3,4,5,6,7]
+10)Generate bar code
+
+                                             Module-2
+11) Dr. appoinment time
+12) Dr. time match
+13) Appoinment fees
+14) Fee option 
+  a)Online
+  b)card option
+  c)cash option
+  d)get recieved
+
+
+4)Accounting System
+                                             Module-1
+1) Employee name
+2) Employee full name
+3) Father name
+4) Nic no:
+5) Attendence
+6) Overtime allowance
+
+                                             Module-2
+7) Employee Fix salary
+8) Employee advance salary
+9) Employee trorilling allowance
+10)Employee bonus allowance
+11)Employee bonus per month
+12)Employee tax per month
+13)Calculate all salary              Total print
+14)After recieve                     print voucher
+
+
+
+
