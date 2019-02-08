@@ -1,0 +1,370 @@
+Classes:
+
+Object Orientation is a software development paradigm that follows real-world modelling. Object Orientation, considers a program as a collection of objects that communicates with each other via mechanism called methods. ES6 supports these object-oriented components too.
+
+You’re ready to define your first class in ES6. Let’s create a Vehicle class now.
+
+class Vehicle {
+
+ 
+}
+
+console.log(typeof Vehicle);
+
+Instantiating an Object from an ES6 Class:
+
+class Vehicle {
+ 
+}
+let obj= new Vehicle();
+ 
+console.log(typeof vehicle);  // object
+console.log(vehicle instanceof Vehicle);  // true
+
+So even though the “class” itself is a function, when we instantiate an object from that class, we do get an actual object. In addition to this, if we test that the vehicle is an instance of Vehicle, we do get back a true
+
+
+Method Inside a Class:
+
+class Vehicle {
+
+    displayType() {
+        console.log('Car');
+    }
+
+}
+ 
+let vehicle = new Vehicle();
+vehicle.displayType();  // Car
+
+ES6 Constructor Function:
+
+Constructors are a key concept of classes in any object oriented language. ES6 now has support for creating a constructor function inside your class. As a quick review, the concept of a constructor function in general is that of a function which automatically runs anytime an object is instantiated from that class
+
+
+class Vehicle {
+
+    constructor() {
+        console.log('Running Automatically')
+    }
+ 
+
+    displayType() {
+        console.log('Car');
+    }
+
+}
+ 
+let vehicle = new Vehicle();
+ 
+// Running Automatically
+
+Assigning a class to a variable:
+
+ou may be familiar with assigning functions to variables and passing them around as first class citizens. You can do the same type of thing with a class in ES6. Let’s see how that works.
+
+let somevariable = class Vehicle {
+    constructor() {
+        console.log('Running Automatically')
+    }
+ 
+    displayType() {
+        console.log('Car');
+    }
+}
+ 
+new somevariable();
+ 
+// Running Automatically
+
+Inheritance with extends and super :
+
+Let’s now create a class that inherits from another class. To do this, we make use of the extends keyword just like other object oriented languages. This allows the child class to inherit all of the behavior of the parent class. We can extend our Vehicle class by building a Tesla class to test out the functionality of extends.
+
+class Vehicle {
+    constructor() {
+        console.log('Start me up');
+    }
+}
+ 
+class Tesla extends Vehicle {
+}
+ 
+let model3 = new Tesla();
+ 
+// Start me up
+
+class Vehicle {
+    constructor(color) {
+        console.log(`The car is ${color}`);
+    }
+}
+ 
+class Tesla extends Vehicle {
+}
+ 
+let model3 = new Tesla('Blue');
+ 
+// The car is Blue
+
+Calling a Parent Constructor with super():
+
+What happens if a parent has a constructor, and the child class also has a constructor? In this case you make use of the super(); language construct. Let’s see an example here.
+
+class Vehicle {
+    constructor() {
+        console.log('The Base Vehicle.');
+    }
+}
+ 
+class Tesla extends Vehicle {
+
+	    constructor() {
+     	   super();
+   	     console.log('The Tesla Vehicle.')
+	    }
+}
+ 
+let model3 = new Tesla();
+ 
+// The Base Vehicle.
+// The Tesla Vehicle.
+
+By calling super() in the Tesla child class, the JavaScript engine knows that it should instantiate the parent class of Vehicle and call it’s constructor. This is why we see the output of both classes in the console. In fact, if the child class has a constructor, you must call super() in the child constructor. If you do not, you will get an error of “Derived constructor must call super()”.
+
+ES6 Method Override:
+
+When you extend a class, all methods and properties get passed down to the child instance. What about a situation where you want to apply different behavior to a method that gets inherited? This is pretty easy. All you need to do is redefine the method in the child class with the behavior you would like. Here is an example.
+class Vehicle {
+
+    getPropulsion() {
+        return 'Gas Powered';
+    }
+
+}
+ 
+class Tesla extends Vehicle {
+
+    getPropulsion() {
+        return 'Electric Powered';
+    }
+
+}
+ 
+let model3 = new Tesla();
+ 
+let poweredby = model3.getPropulsion();
+console.log(poweredby);
+ 
+// Electric Powered
+
+
+Calling super() in a method:
+
+We learned that if the child class has a constructor we must call super(). In addition to this, you can also make use of a call to super() in a method of the child class. Let’s see an example of calling super() in a method here.
+
+class Vehicle {
+    getPropulsion() {
+        return 'Gas Powered';
+    }
+}
+ 
+class Tesla extends Vehicle {
+    getPropulsion() {
+        return 'Hybrid is ' + super.getPropulsion() + ' and Electric Powered';
+    }
+}
+ 
+let model3 = new Tesla();
+ 
+let poweredby = model3.getPropulsion();
+console.log(poweredby);
+ 
+// Hybrid is Gas Powered and Electric Powered
+
+
+By calling super.getPropulsion(), the JavaScript engine will look up the prototype chaine for a getPropulsion() method, and locates it in the Vehicle class (or constructor function).
+
+let vehicle = {
+    getPropulsion() {
+        return 'Gas Powered';
+    }
+};
+ 
+let Tesla = {
+    getPropulsion() {
+        return 'Hybrid is ' + super.getPropulsion() + ' and Electric Powered';
+    }
+};
+ 
+Object.setPrototypeOf(Tesla, vehicle);
+ 
+let poweredby = Tesla.getPropulsion();
+console.log(poweredby);
+ 
+// Hybrid is Gas Powered and Electric Powered
+
+==============Properties for Class Instances==========
+
+So far we have covered a good deal of information about using the class keyword in ES6, but we haven’t yet touched on using properties. Let’s investigate them now. We’ll set up some example code then discuss how it works.
+
+
+class Vehicle {
+
+    constructor() {
+        this.kindof = 'Car';
+    }
+
+}
+ 
+class Tesla extends Vehicle {
+    constructor() {
+        super();
+    }
+}
+ 
+let car = new Tesla();
+console.log(car.kindof);
+
+
+Here we have a class of Vehicle, and in the constructor we are setting this.kindof to a simple string value of ‘Car’. The constructor method in Vehicle is very much like the way you would specify a constructor function in ES5 which you would “new up”. Many times you would accept values and set them via the this keyword when working like this.
+
+=============Accessing this across constructors======
+
+
+In the following example, we show how you can access properties held in the this object across constructors. You’ll see we again make use of this.kindof in the constructor of the Vehicle class. We also access this.kindof in the constructor of the child class of Tesla. We take this opportunity to mutate the value held in this.kindof and we can see the results when we log out the value. As always, make sure to call super() in the constructor of the child class.
+
+
+class Vehicle {
+    constructor() {
+        this.kindof = 'Car';
+    }
+}
+ 
+class Tesla extends Vehicle {
+    constructor() {
+        super();
+        this.kindof = 'Electric ' + this.kindof;
+    }
+}
+ 
+let car = new Tesla();
+console.log(car.kindof);
+ 
+// Elcectric Car
+
+===========Static Methods and Properties :
+
+First we will look at an example of a static method. Notice the method declaration of getDefaultEngine() is prefixed with the static keyword. If you are familiar with the general concepts of object oriented programming, you know that if a method is static, you can call it right from the class without having to create an instance of the class first. That is exactly what we do here. We call getDefaultEngine() right from the Vehicle class with no need of the new keyword. By declaring a method as static, the method gets attached directly to Vehicle.
+
+class Vehicle {
+    static getDefaultEngine() {
+        return 'Gas';
+    }
+}
+let engine = Vehicle.getDefaultEngine();
+console.log(engine);
+ 
+// Gas
+
+=========No static keyword for class properties:
+
+As it turns out, in ES6 you can apply the static keyword to methods but you can not do the same for properties. If you want to set a static property on a class in ES6, it actually works like it did in ES5. Here is an example of pseudo static property in ES6
+
+class Vehicle {
+ 
+}
+Vehicle.color = 'Red';
+console.log(Vehicle.color);
+
+
+
+=============ES6 Getters and Setters
+
+In ES6 during your method definitions inside of a class, you can set up getter and setter methods quite easily. All you need to do is prefix the method you want to be a getter with the keyword of get. Conversely, if you need to set up a setter method, you would prefix with the set keyword. 
+
+by using the keywords of get and set, we give ourselves the ability to retrieve the height or area of a square by simply typing square.height or square.area. To set a new height for the square, we simply do something like square.height = 25;
+
+
+class Square {
+    constructor(width) {
+        this.width = width;
+    }
+ 
+    get height() {
+        return this.width;
+    }
+ 
+    set height(height) {
+        this.width = height;
+        console.log('Set a new height of: ' + this.height)
+    }
+ 
+    get area() {
+        return this.width * this.height;
+    }
+}
+ 
+let square = new Square(2);
+console.log('Getting the height: ' + square.height);
+console.log('Getting the area: ' + square.area);
+ 
+square.height = 5;
+console.log('Getting the height: ' + square.height);
+console.log('Getting the area: ' + square.area);
+ 
+square.height = 8;
+console.log('Getting the height: ' + square.height);
+console.log('Getting the area: ' + square.area);
+ 
+// Getting the height: 2
+// Getting the area: 4
+// Set a new height of: 5
+// Getting the height: 5
+// Getting the area: 25
+// Set a new height of: 8
+// Getting the height: 8
+// Getting the area: 64
+Web Development Tutorials
+
+Classes as first class citizens:
+
+In ES6, classes are first class citizens. In other words, they can be passed around in your scripts just like you would pass variables, objects, and functions. Let’s see how it works.
+
+
+class Vehicle {
+    constructor() {
+        console.log('moving forward');
+    }
+}
+ 
+function move() {
+    console.log('finished moving');
+}
+ 
+move(new Vehicle());
+ 
+// moving forward
+// finished moving
+
+
+Here we have our Vehicle class as well as a function of move() defined. Note that when we make a call to move() we pass in a new instance of the Vehicle class. The output shows that the code runs and we get the output of the constructor functions of Vehicle, as well as the logic from the move() function itself. You could even use this approach in a more one off type of fashion by making use of an anonymous class like so.
+
+function move() {
+    console.log('finished moving');
+}
+ 
+move(new class {
+    constructor() {
+        console.log('moving forward');
+    }
+});
+ 
+// moving forward
+// finished moving
+
+
+
+
+
+
