@@ -1,0 +1,288 @@
+===============Function============
+
+Syntax
+function  function_name() { 
+   // function body 
+}
+
+
+function () {   
+   //function definition 
+   console.log("function called") 
+}
+
+==========Calling a Function=========
+
+
+Syntax
+Function_name()
+
+
+
+function test() { 
+   console.log("function called"); 
+} 
+test();    // function invocation
+
+==========Returning a Function===================
+
+Syntax
+
+function function_name():return_type { 
+   //statements 
+   return value; 
+}
+
+
+
+function greet():string { //the function returns a string 
+   return "Hello World" 
+} 
+
+function caller() { 
+   var msg = greet() //function greet() invoked 
+   console.log(msg) 
+} 
+
+//invoke function 
+caller()
+
+==================Parameterized a Function=========
+
+Positional Parameters
+function func_name( param1 [:datatype], ( param2 [:datatype]) {   
+}
+
+function test_param(n1, s1) {
+   console.log(n1);
+   console.log(s1);
+}
+test_param(123, "this is a string");
+
+
+==================Optional Parameters==========
+
+Optional parameters can be used when arguments need not be compulsorily passed for a function’s execution. A parameter can be marked optional by appending a question mark to its name.
+
+
+function function_name (param1[:type], param2[:type], param3[:type])
+
+
+
+
+
+function disp_details(id, name, mail_id) {
+
+   console.log("ID:", id);
+   console.log("Name", name);
+	
+   if (mail_id != undefined)
+      console.log("Email Id", mail_id);
+}
+disp_details(123, "John");
+disp_details(111, "mary", "mary@xyz.com");
+
+
+OUTPUT:
+
+ID:123 
+Name John 
+ID: 111 
+Name  mary 
+Email Id mary@xyz.com
+
+
+
+
+
+==============Anonymous Function===========
+
+Functions that are not bound to an identifier (function name) are called as anonymous functions. These functions are dynamically declared at runtime. Anonymous functions can accept inputs and return outputs, just as standard functions do. An anonymous function is usually not accessible after its initial creation.
+
+
+Syntax
+var res = function( [arguments] ) { ... }
+
+===============EXMPLE 1==============
+
+var msg = function() { 
+   return "hello world";  
+} 
+console.log(msg())
+
+OUTPUT:
+hello world
+
+================Anonymous function with parameters========
+
+var res = function (a, b) {
+   return a * b;
+};
+console.log(res(12, 2));
+
+OUTPUT:
+
+24
+
+================The Function Constructor=========
+
+
+
+var myFunction = new Function("a", "b", "return a * b"); 
+
+var x = myFunction(4, 3); 
+
+console.log(x);
+
+
+OUTPUT
+12 
+
+====================Recursion and TypeScript Functions=====
+
+
+Recursion is a technique for iterating over an operation by having a function call to itself repeatedly until it arrives at a result. Recursion is best applied when you need to call the same function repeatedly with different parameters from within a loop.
+
+=============Recursion
+
+function factorial(number) {
+
+   if (number <= 0) {         // termination case
+      return 1; 
+   } else {     
+      return (number * factorial(number - 1));     // function invokes itself
+   } 
+}; 
+console.log(factorial(6));      // outputs 720
+
+
+================Anonymous Recursive Function
+
+(function () { 
+   var x = "Hello!!";   
+   console.log(x)     
+})()      // the function invokes itself using a pair of parentheses ()
+
+
+
+========================Lambda Functions==============
+
+Lambda refers to anonymous functions in programming. Lambda functions are a concise mechanism to represent anonymous functions. These functions are also called as Arrow functions.
+
+
+Lambda Expression
+It is an anonymous function expression that points to a single line of code. Its syntax is as follows
+
+
+
+( [param1, parma2,…param n] )=>statement;
+
+===========
+var foo = (x:number)=>10 + x 
+console.log(foo(100))      //outputs 110 
+
+============
+
+var foo = function (x) { return 10 + x; };
+
+console.log(foo(100));      //outputs 110
+
+output
+110
+
+=============================Lambda Statement===================
+( [param1, parma2,…param n] )=> {
+ 
+   //code block
+}
+
+
+
+========
+
+var foo = (x:number)=> {    
+   x = 10 + x 
+   console.log(x)  
+} 
+foo(100)
+
+output
+110
+
+===================Syntactic Variations==========
+
+Parameter type Inference
+It is not mandatory to specify the data type of a parameter. In such a case the data type of the parameter is any. Let us take a look at the following code snippe
+
+
+var func = (x)=> { 
+
+   if(typeof x=="number") { 
+
+      console.log(x+" is numeric") 
+
+   } else if(typeof x=="string") { 
+
+      console.log(x+" is a string") 
+   }  
+} 
+func(12) 
+func("Tom")
+
+===========
+
+
+
+var func = function (x) {
+
+   if (typeof x == "number") {
+
+      console.log(x + " is numeric");
+
+   } else if (typeof x == "string") {
+
+      console.log(x + " is a string");
+   }
+};
+func(12);
+func("Tom");
+
+
+output:
+12 is numeric 
+Tom is a string
+
+=========================Optional parentheses for a single parameter===============
+
+var display = x +y=> { 
+
+   console.log("The function got "+x) 
+} 
+display(12)
+
+
+var display = function (x) {
+   console.log("The function got " + x);
+};
+display(12);
+
+output:
+
+The function got 12
+
+==================Optional braces for a single statement, Empty parentheses for no parameter==========
+
+var disp = function () {
+   console.log("Function invoked");
+};
+disp();
+
+output:
+Function invoked
+
+
+
+
+
+
+
