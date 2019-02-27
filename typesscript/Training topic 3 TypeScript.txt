@@ -1,0 +1,155 @@
+==============Tuples==========
+
+At times, there might be a need to store a collection of values of varied types. Arrays will not serve this purpose. TypeScript gives us a data type called tuple that helps to achieve such a purpose.
+
+
+Syntax:
+
+var tuple_name = [value1,value2,value3,…value n]
+
+var mytuple = [10,"Hello"];
+
+
+var mytuple = []; 
+mytuple[0] = 120 
+mytuple[1] = 234
+
+===============Accessing values in Tuples=====
+
+Tuple values are individually called items. Tuples are index based. This means that items in a tuple can be accessed using their corresponding numeric index. Tuple item’s index starts from zero and extends up to n-1(where n is the tuple’s size).
+
+Syntax
+tuple_name[index]
+
+
+var mytuple = [10,"Hello"]; //create a  tuple 
+console.log(mytuple[0]) 
+console.log(mytuple[1])
+
+=========== Empty Tuple
+
+var tup = [] 
+tup[0] = "hh" 
+tup[1] = 23 
+
+console.log(tup[0]) 
+console.log(tup[1])
+
+==============Tuple Operations=======
+
+var mytuple = [10,"Hello","World","typeScript"]; 
+
+console.log("Items before push "+mytuple.length)    // returns the tuple size 
+
+mytuple.push(12)                                    // append value to the tuple 
+
+console.log("Items after push "+mytuple.length) 
+
+console.log("Items before pop "+mytuple.length) 
+
+console.log(mytuple.pop()+" popped from the tuple") // removes and returns the last item
+  
+console.log("Items after pop "+mytuple.length)
+
+output:
+Items before push 4 
+Items after push 5 
+Items before pop 5 
+12 popped from the tuple 
+Items after pop 4
+
+================Updating Tuples========
+
+var mytuple = [10,"Hello","World","typeScript"]; //create a  tuple 
+
+console.log("Tuple value at index 0 "+mytuple[0]) 
+
+//update a tuple element 
+mytuple[0] = 121     
+console.log("Tuple value at index 0 changed to   "+mytuple[0])
+
+output:
+Tuple value at index 0 10 
+Tuple value at index 0 changed to 121
+
+
+=======================Union==========
+
+
+
+
+ability to combine one or two types. Union types are a powerful way to express a value that can be one of the several types. Two or more data types are combined using the pipe symbol (|) to denote a Union Type. In other words, a union type is written as a sequence of types separated by vertical bars.
+
+Syntax: Union literal
+
+Type1|Type2|Type3 
+
+
+==
+var val:string|number 
+
+val = 12 
+
+console.log("numeric value of val "+val) 
+val = "This is a string" 
+console.log("string value of val "+val)
+
+
+output:
+
+numeric value of val  12 
+string value of val this is a string 
+
+=================Union Type and function parameter===============
+
+function disp(name) {
+
+   if (typeof name == "string") {
+
+      console.log(name);
+
+   } else {
+
+      var i;
+      for (i = 0; i < name.length; i++) {
+         console.log(name[i]);
+      }
+
+   }
+}
+
+disp("mark");
+console.log("Printing names array....");
+disp(["Mark", "Tom", "Mary", "John"]);
+
+output:
+
+Mark 
+Printing names array…. 
+Mark 
+Tom
+Mary
+John
+
+====================Union Type and Arrays==============
+
+var arr ;
+var i;
+arr = [1, 2, 4];
+
+	console.log("**numeric array**");
+
+for (i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+arr : any = ["khi", "lh", "isb"];
+console.log("**string array**");
+
+for (i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+
+output:
+
+
+

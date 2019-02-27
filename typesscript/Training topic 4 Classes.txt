@@ -1,0 +1,257 @@
+//=============Classes=====================
+
+TypeScript supports object-oriented programming features like classes, interfaces, etc. A class in terms of OOP is a blueprint for creating objects. A class encapsulates data for the object. Typescript gives built in support for this concept called class. JavaScript ES5 or earlier didn’t support classes. Typescript gets this feature from ES6
+
+
+//============= Creating classes=========
+
+Syntax
+class class_name { 
+   //class scope 
+}
+
+
+===========
+A class definition can include the following
+
+
+Fields :
+
+ 	A field is any variable declared in a class. Fields represent data pertaining to objects
+
+Constructors :
+
+	 Responsible for allocating memory for the objects of the class
+
+Functions :
+
+	 Functions represent actions an object can take. They are also at times referred to as methods
+
+
+==============Declaring a class===========
+
+
+class Car {
+
+   public engine :string;
+
+     
+   constructor (sengine :string){
+       this.engine = sengine;
+   }
+
+   displ(engss :string) :void {
+    console.log("Function displays Engine is  :   "+engss) 
+   }
+
+}
+
+var obj = new Car("XXSY1");
+console.log("Reading attribute value Engine as :  "+obj.engine)  
+//access the function
+obj.displ("car 1234");
+
+//===========get and set method========
+
+class Car {
+
+    public name :string;
+
+     
+   setName (name : string) : void {
+
+      this.name = name;
+   }
+
+   getName () :string {
+       return this.name;
+   } 
+
+
+}
+
+var obj = new Car ();
+
+//obj.getName();  // get method calll
+obj.setName("shah");
+
+console.log(obj.getName());
+
+
+========================Class Inheritance===========
+ The class that is extended to create newer classes is called the parent class/super class. The newly created classes are called the child/sub classes
+
+class child_class_name extends parent_class_name
+
+
+
+
+
+class Shape { 
+   Area:number 
+   
+   constructor(a:number) { 
+      this.Area = a 
+   } 
+} 
+
+class Circle extends Shape { 
+   disp():void { 
+      console.log("Area of the circle:  "+this.Area) 
+   } 
+}
+  
+var obj = new Circle(223); 
+obj.disp()
+
+//=====================exmple 2=======
+
+
+class Shape { 
+    public Area:number ;
+    
+    constructor(a:number) { 
+       this.Area = a ;
+    } 
+ } 
+ 
+ class Circle extends Shape { 
+
+    disp():void { 
+       console.log("Area of the circle:  "+this.Area) ;
+    } 
+ }
+   
+ var obj = new Circle(223); 
+ var obj2 = new Shape (566);
+ console.log (obj2.Area);
+ obj.disp();
+
+//============================
+
+class Root { 
+   str:string; 
+} 
+
+class Child extends Root {} 
+class Leaf extends Child {} //indirectly inherits from Root by virtue of inheritance  
+
+var obj = new Leaf(); 
+obj.str ="hello" 
+console.log(obj.str)
+
+//===========exmple==========
+
+class Root { 
+    public str:string; 
+
+    constructor (str :string){
+        this.str =str;
+    }
+ } 
+ 
+ class Child extends Root {} 
+ class Leaf extends Child {} //indirectly inherits from Root by virtue of inheritance  
+ 
+ var obj = new Leaf("pakistan green"); 
+ //obj.str ="hello" 
+ console.log(obj.str)
+
+===================Class inheritance and Method Overriding===========
+
+
+1) Method Overriding is a mechanism by which the child class redefines the superclass’s method
+
+class PrinterClass { 
+
+   doPrint():void {
+      console.log("doPrint() from Parent called…") 
+   } 
+
+} 
+
+class StringPrinter extends PrinterClass { 
+
+   doPrint():void { 
+      super.doPrint() 
+      console.log("doPrint() is printing a string…")
+   } 
+
+} 
+
+var obj = new StringPrinter() 
+obj.doPrint()
+
+
+==================
+
+out put :
+
+doPrint() from Parent called… 
+doPrint() is printing a string…
+
+
+=====================The static Keyword============
+
+The static keyword can be applied to the data members of a class. A static variable retains its values till the program finishes execution. Static members are referenced by the class name
+
+
+class StaticMem {  
+   static num:number; 
+   
+   static disp():void { 
+      console.log("The value of num is"+ StaticMem.num) 
+   } 
+} 
+
+StaticMem.num = 12     // initialize the static variable 
+StaticMem.disp()      // invoke the static method
+
+
+======================Data Hiding===============
+
+A class can control the visibility of its data members to members of other classes. This capability is termed as Data Hiding or Encapsulation
+
+
+1.)	public
+
+A public data member has universal accessibility. Data members in a class are public by default.
+
+2).	private
+
+Private data members are accessible only within the class that defines these members. If an external class member tries to access a private member, the compiler throws an error.
+
+3).	protected
+
+A protected data member is accessible by the members within the same class as that of the former and also by the members of the child classes.
+
+
+class Encapsulate { 
+   str:string = "hello" 
+   private str2:string = "world" 
+}
+ 
+var obj = new Encapsulate() 
+console.log(obj.str)     //accessible 
+console.log(obj.str2)   //compilation Error as str2 is private
+
+
+=================Classes and Interfaces============
+
+interface ILoan { 
+   interest:number 
+} 
+
+class AgriLoan implements ILoan { 
+
+   interest:number 
+   rebate:number 
+   
+   constructor(interest:number,rebate:number) { 
+      this.interest = interest 
+      this.rebate = rebate 
+   } 
+} 
+
+var obj = new AgriLoan(10,1) 
+console.log("Interest is : "+obj.interest+" Rebate is : "+obj.rebate )

@@ -40,7 +40,8 @@ console.log(x);
  })()  
  
  var foo =()=>10
- 
+
  console.log(foo());
+ 
 
 
