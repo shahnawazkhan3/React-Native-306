@@ -1,0 +1,375 @@
+Image Effects
+
+
+===========Android allows you to manipulate images by adding different kinds of effects on the images.====
+
+/The effects could be brightness,darkness, grayscale conversion e.t.c.
+
+Android provides Bitmap class to handle images. This can be found under android.graphics.bitmap. There are many ways through which you can instantiate bitmap.
+
+ We are creating a bitmap of image from the imageView
+
+
+====================== add class 
+private Bitmap bmp;
+private ImageView img;
+img = (ImageView)findViewById(R.id.imageView1);
+BitmapDrawable  abmp = (BitmapDrawable)img.getDrawable();
+
+
+bmp = abmp.getBitmap();
+
+
+for(int i=0; i<bmp.getWidth(); i++){
+
+
+   for(int j=0; j<bmp.getHeight(); j++){
+      int p = bmp.getPixel(i, j);
+   }
+
+}
+
+
+
+
+===========
+
+The getWidth() and getHeight() functions returns the height and width of the matrix. 
+The getPixel() method returns the pixel at the specified index. Once you got the pixel,
+ you can easily manipulate it according to your needs.
+
+==========================
+
+
+1	copy(Bitmap.Config config, boolean isMutable)
+
+		This method copy this bitmap's pixels into the new bitmap
+
+2	createBitmap(DisplayMetrics display, int width, int height, Bitmap.Config config)
+
+		Returns a mutable bitmap with the specified width and height
+
+3	createBitmap(int width, int height, Bitmap.Config config)
+
+		Returns a mutable bitmap with the specified width and height
+
+4	createBitmap(Bitmap src)
+
+		Returns an immutable bitmap from the source bitmap
+
+5	extractAlpha()
+
+			Returns a new bitmap that captures the alpha values of the original
+
+6	getConfig()
+
+T		his mehtod eturn that config, otherwise return null
+
+7	getDensity()
+
+		Returns the density for this bitmap
+
+8	getRowBytes()
+
+		Return the number of bytes between rows in the bitmap's pixels
+
+9	setPixel(int x, int y, int color)
+
+		Write the specified Color into the bitmap (assuming it is mutable) at the x,y coordinate
+
+10	setDensity(int density)
+
+This method specifies the density for this bitmap
+
+
+================
+package com.zaaviyah.zaaviyah_imageeffects;
+
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+public class MainActivity extends AppCompatActivity {
+
+
+
+    Button b1, b2, b3;
+    ImageView im;
+
+    private Bitmap bmp;
+    private Bitmap operation;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        b1 = (Button) findViewById(R.id.button);
+        b2 = (Button) findViewById(R.id.button2);
+        b3 = (Button) findViewById(R.id.button3);
+        im = (ImageView) findViewById(R.id.imageView);
+
+        /// class add here show
+        BitmapDrawable abmp = (BitmapDrawable) im.getDrawable();
+        bmp = abmp.getBitmap();
+    }
+
+   public void gray (View view) {
+
+       operation = Bitmap.createBitmap(bmp.getWidth(),bmp.getHeight(), bmp.getConfig());
+
+       double red = 0.33;
+       double green = 0.59;
+       double blue = 0.11;
+
+       for (int i = 0; i < bmp.getWidth(); i++) {
+
+           for (int j = 0; j < bmp.getHeight(); j++) {
+
+               int p = bmp.getPixel(i, j);
+               int r = Color.red(p);
+               int g = Color.green(p);
+               int b = Color.blue(p);
+
+               r = (int) red * r;
+               g = (int) green * g;
+               b = (int) blue * b;
+               operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+           }
+       }
+       im.setImageBitmap(operation);
+   }
+
+    public void bright(View view){
+        operation= Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(),bmp.getConfig());
+
+        for(int i=0; i<bmp.getWidth(); i++){
+            for(int j=0; j<bmp.getHeight(); j++){
+                int p = bmp.getPixel(i, j);
+                int r = Color.red(p);
+                int g = Color.green(p);
+                int b = Color.blue(p);
+                int alpha = Color.alpha(p);
+
+                r = 100  +  r;
+                g = 100  + g;
+                b = 100  + b;
+                alpha = 100 + alpha;
+                operation.setPixel(i, j, Color.argb(alpha, r, g, b));
+            }
+        }
+        im.setImageBitmap(operation);
+    }
+
+
+
+    public void dark(View view){
+        operation= Bitmap.createBitmap(bmp.getWidth(),bmp.getHeight(),bmp.getConfig());
+
+        for(int i=0; i<bmp.getWidth(); i++){
+            for(int j=0; j<bmp.getHeight(); j++){
+                int p = bmp.getPixel(i, j);
+                int r = Color.red(p);
+                int g = Color.green(p);
+                int b = Color.blue(p);
+                int alpha = Color.alpha(p);
+
+                r =  r - 50;
+                g =  g - 50;
+                b =  b - 50;
+                alpha = alpha -50;
+                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+            }
+        }
+        im.setImageBitmap(operation);
+    }
+
+
+    public void gama(View view) {
+        operation = Bitmap.createBitmap(bmp.getWidth(),bmp.getHeight(),bmp.getConfig());
+
+        for(int i=0; i<bmp.getWidth(); i++){
+            for(int j=0; j<bmp.getHeight(); j++){
+                int p = bmp.getPixel(i, j);
+                int r = Color.red(p);
+                int g = Color.green(p);
+                int b = Color.blue(p);
+                int alpha = Color.alpha(p);
+
+                r =  r + 150;
+                g =  0;
+                b =  0;
+                alpha = 0;
+                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+            }
+        }
+        im.setImageBitmap(operation);
+    }
+
+
+    public void green(View view){
+        operation = Bitmap.createBitmap(bmp.getWidth(),bmp.getHeight(), bmp.getConfig());
+
+        for(int i=0; i<bmp.getWidth(); i++){
+            for(int j=0; j<bmp.getHeight(); j++){
+                int p = bmp.getPixel(i, j);
+                int r = Color.red(p);
+                int g = Color.green(p);
+                int b = Color.blue(p);
+                int alpha = Color.alpha(p);
+
+                r =  0;
+                g =  g+150;
+                b =  0;
+                alpha = 0;
+                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+            }
+        }
+        im.setImageBitmap(operation);
+    }
+
+    public void blue(View view){
+        operation = Bitmap.createBitmap(bmp.getWidth(),bmp.getHeight(), bmp.getConfig());
+
+        for(int i=0; i<bmp.getWidth(); i++){
+            for(int j=0; j<bmp.getHeight(); j++){
+                int p = bmp.getPixel(i, j);
+                int r = Color.red(p);
+                int g = Color.green(p);
+                int b = Color.blue(p);
+                int alpha = Color.alpha(p);
+
+                r =  0;
+                g =  0;
+                b =  b+150;
+                alpha = 0;
+                operation.setPixel(i, j, Color.argb(Color.alpha(p), r, g, b));
+            }
+        }
+        im.setImageBitmap(operation);
+    }
+
+}
+===============================xnml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/unnamed"
+    tools:context="com.zaaviyah.zaaviyah_imageeffects.MainActivity">
+
+
+    <TextView
+        android:id="@+id/ss"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="56dp"
+        android:text="ZAAVIYAH SOLUTIONS"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/shahlogo"
+        android:layout_below="@+id/ss"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="gray"
+            android:text="Gray"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="bright"
+            android:text="Bright"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="blue"
+            android:text="blue"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="gama"
+            android:text="Red"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="green"
+            android:text="Green"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="dark"
+            android:text="dark"
+            android:textColor="@android:color/background_light"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
+
